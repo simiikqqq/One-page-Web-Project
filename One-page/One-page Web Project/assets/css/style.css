@@ -1,1 +1,140 @@
 
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6fa;
+    color: #333;
+}
+
+header {
+    background: #e3ecf7;
+    padding: 15px 20px;
+    box-shadow: 0 2px 4px #0001;
+}
+
+header h1 {
+    margin: 0 0 12px 0;
+}
+
+nav button {
+    margin-right: 10px;
+    padding: 8px 14px;
+    background: #d2def0;
+    border: 1px solid #b9cbe2;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+nav button:hover {
+    background: #c2d4ed;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    display: none;
+}
+
+section.active {
+    display: block;
+}
+
+.note-list {
+    margin-top: 15px;
+    display: grid;
+    gap: 15px;
+}
+
+.note-card {
+    background: white;
+    padding: 15px;
+    border-radius: 7px;
+    box-shadow: 0 2px 4px #0002;
+}
+
+.note-card h3 {
+    margin: 0 0 8px 0;
+}
+
+.input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #c8d0dc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.textarea {
+    width: 100%;
+    min-height: 220px;
+    padding: 12px;
+    border: 1px solid #c8d0dc;
+    border-radius: 5px;
+    resize: vertical;
+}
+
+.btn-row {
+    margin-top: 10px;
+}
+
+.btn-primary,
+.btn-warning,
+.btn-danger {
+    padding: 10px 14px;
+    border: none;
+    border-radius: 6px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: white;
+}
+
+.btn-primary {
+    background: #8ab2e8;
+}
+
+.btn-primary:hover {
+    background: #79a3df;
+}
+
+.btn-warning {
+    background: #e8b978;
+}
+
+.btn-warning:hover {
+    background: #daa867;
+}
+
+.btn-danger {
+    background: #e86c6c;
+}
+
+.btn-danger:hover {
+    background: #dc5959;
+}
+
+.tag {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #dce7f6;
+    border-radius: 5px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.archive-item {
+    background: white;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px #0002;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 600px) {
+    nav button {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+}
