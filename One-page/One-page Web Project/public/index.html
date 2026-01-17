@@ -2,9 +2,9 @@
 <html lang="cs">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple Notes App</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
 
@@ -13,67 +13,61 @@
     <nav>
         <button data-section="about">O aplikaci</button>
         <button data-section="notes">Seznam poznámek</button>
-        <button data-section="editor">Editor poznámek</button>
+        <button data-section="editor">Editor</button>
         <button data-section="categories">Kategorie</button>
         <button data-section="archive">Archiv</button>
     </nav>
 </header>
+
 <main>
-    <section id="about" class="active">
-        <h2>O aplikaci</h2>
-        <p>
-            Simple Notes App je jednoduchá webová aplikace umožňující psát, ukládat a organizovat 
-            osobní poznámky. Uživatelské rozhraní je čisté, přehledné a snadno ovladatelné 
-            na počítači i mobilu. Poznámky lze třídit do kategorií a starší položky je možné 
-            přesunout do archivu.
-        </p>
-    </section>
-    <section id="notes">
-        <h2>Seznam poznámek</h2>
 
-        <input class="input" type="text" placeholder="Vyhledat poznámku…">
+<section id="about" class="active">
+    <h2>O aplikaci</h2>
+    <p>Poznámky se ukládají do JSON souborů pomocí PHP.</p>
+</section>
 
-        <div class="note-list">
-            <div class="note-card">
-                <h3>Název poznámky</h3>
-                <p>Toto je ukázka poznámky…</p>
-            </div>
-            <div class="note-card">
-                <h3>Druhá poznámka</h3>
-                <p>Krátký text pro náhled poznámky…</p>
-            </div>
-        </div>
-    </section>
-    <section id="editor">
-        <h2>Editor poznámek</h2>
-        <input class="input" type="text" placeholder="Název poznámky">
-        <textarea class="textarea" placeholder="Text poznámky…"></textarea>
-        <div class="btn-row">
-            <button class="btn-primary">Uložit</button>
-            <button class="btn-warning">Upravit</button>
-            <button class="btn-danger">Smazat</button>
-        </div>
-    </section>
-    <section id="categories">
-        <h2>Kategorie</h2>
-        <p>Zde jsou zobrazeny hlavní skupiny, do kterých lze poznámky zařadit.</p>
+<section id="notes">
+    <h2>Seznam poznámek</h2>
+    <div id="notesContainer" class="note-list"></div>
+</section>
 
-        <div class="category-list">
-            <span class="tag">Škola</span>
-            <span class="tag">Práce</span>
-            <span class="tag">Osobní</span>
-            <span class="tag">Nápady</span>
-        </div>
-    </section>
-    <section id="archive">
-        <h2>Archiv</h2>
-        <p>Položky zde jsou odložené poznámky, které již nejsou aktivně používány.</p>
-        <div class="archive-list">
-            <div class="archive-item">Archivovaná poznámka</div>
-            <div class="archive-item">Starší poznámka</div>
-        </div>
-    </section>
+<section id="editor">
+    <h2>Editor poznámek</h2>
+
+    <input id="noteTitle" class="input" placeholder="Název">
+    <textarea id="noteText" class="textarea" placeholder="Text"></textarea>
+
+    <select id="noteCategory" class="input">
+        <option value="">-- Kategorie --</option>
+        <option>Škola</option>
+        <option>Práce</option>
+        <option>Domácnost</option>
+        <option>Projekty</option>
+    </select>
+
+    <button id="saveNote" class="btn-primary">Uložit</button>
+</section>
+
+<section id="categories">
+    <h2>Kategorie</h2>
+
+    <div class="category-list">
+        <button class="tag category" data-category="Škola">Škola</button>
+        <button class="tag category" data-category="Práce">Práce</button>
+        <button class="tag category" data-category="Domácnost">Domácnost</button>
+        <button class="tag category" data-category="Projekty">Projekty</button>
+    </div>
+
+    <div id="categoryNotes" class="note-list"></div>
+</section>
+
+<section id="archive">
+    <h2>Archiv</h2>
+    <div id="archive-list" class="archive-list"></div>
+</section>
+
 </main>
-<script src="/assets/js/script.js"></script>
+
+<script src="../assets/js/script.js"></script>
 </body>
 </html>
