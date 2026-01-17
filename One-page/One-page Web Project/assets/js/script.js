@@ -1,38 +1,99 @@
-const buttons = document.querySelectorAll("nav button");
-const sections = document.querySelectorAll("main section");
+let notes = [];
+let archive = [];
+let editingIndex = null;
+let activeCategory = null;
 
-buttons.forEach(button => {
-    button.addEventListener("click", () => {
-        const target = button.dataset.section;
-
-        sections.forEach(s => s.classList.remove("active"));
-        document.getElementById(target).classList.add("active");
-    });
+document.querySelectorAll("nav button").forEach(btn => {
+    btn.onclick = () => {
+        document.querySelectorAll("main section")
+            .forEach(s => s.classList.remove("active"));
+        document.getElementById(btn.dataset.section).classList.add("active");
+    };
 });
 
+// NAČTENÍ DAT
 
-async function loadNotes() {
-    const response = await fetch("backend.php?action=getNotes");
-    const notes = await response.json();
-    return notes;
+async function loadData() {
+    notes = await fetch("../api/notes.php?action=getNotes").then(r => r.json());
+    archive = await fetch("../api/notes.php?action=getArchive").then(r => r.json());
+    renderAllNotes();
+    renderArchive();
 }
 
-async function saveNote(data) {
-    const response = await fetch("backend.php?action=saveNote", {
+loadData();
+
+// ULOŽENÍ
+
+document.getElementById("saveNote").onclick = async () => {
+    const title = noteTitle.value;
+    const text = noteText.value;
+    const category = noteCategory.value;
+
+    if (!title || !text || !category) {
+        alert("Vyplň vše");
+        return;
+    }
+
+    await fetch("../api/notes.php?action=save", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data)
+        body: JSON.stringify({ title, text, category })
     });
 
-    return await response.json();
+    noteTitle.value = noteText.value = "";
+    loadData();
+};
+
+// VYKRESLENÍ 
+
+function renderAllNotes() {
+    notesContainer.innerHTML = "";
+    notes.forEach((n, i) => {
+        notesContainer.innerHTML += `
+        <div class="note-card">
+            <h3>${n.title}</h3>
+            <p>${n.text}</p>
+            <small>${n.category}</small><br><br>
+            <button onclick="archiveNote(${i})">Archiv</button>
+            <button onclick="deleteNote(${i})">Smazat</button>
+        </div>`;
+    });
 }
 
-async function deleteNote(id) {
-    const response = await fetch("backend.php?action=deleteNote&id=" + id);
-    return await response.json();
+document.querySelectorAll(".category").forEach(btn => {
+    btn.onclick = () => {
+        activeCategory = btn.dataset.category;
+        categoryNotes.innerHTML = "";
+        notes.filter(n => n.category === activeCategory)
+            .forEach(n => {
+                categoryNotes.innerHTML += `
+                <div class="note-card">
+                    <h3>${n.title}</h3>
+                    <p>${n.text}</p>
+                </div>`;
+            });
+    };
+});
+
+// AKCE 
+
+async function deleteNote(index) {
+    await fetch(`../api/notes.php?action=delete&id=${index}`);
+    loadData();
 }
 
-async function moveToArchive(id) {
-    const response = await fetch("backend.php?action=archiveNote&id=" + id);
-    return await response.json();
+async function archiveNote(index) {
+    await fetch(`../api/notes.php?action=archive&id=${index}`);
+    loadData();
+}
+
+function renderArchive() {
+    const box = document.getElementById("archive-list");
+    box.innerHTML = "";
+
+    archive.forEach(note => {
+        const div = document.createElement("div");
+        div.className = "archive-item";
+        div.innerHTML = `<strong>${note.title}</strong><br>${note.text}`;
+        box.appendChild(div);
+    });
 }
