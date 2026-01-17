@@ -1,7 +1,27 @@
 [
-  "Škola",
-  "Práce",
-  "Domácnost",
-  "projekty",
-  "Archiv"
+    {
+        "title": "ss",
+        "text": "ss",
+        "category": "Škola"
+    },
+    {
+        "title": "ss",
+        "text": "ss",
+        "category": "Práce"
+    },
+    {
+        "title": "ss",
+        "text": "ss",
+        "category": "Škola"
+    },
+    {
+        "title": "aa",
+        "text": "aa",
+        "category": "Projekty"
+    },
+    {
+        "title": "ss",
+        "text": "ss",
+        "category": "Projekty"
+    }
 ]
