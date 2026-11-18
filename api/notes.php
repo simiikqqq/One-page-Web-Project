@@ -1,8 +1,8 @@
 <?php
 header("Content-Type: application/json");
 
-$notesFile = "../data/notes.json";
-$archiveFile = "../data/archive.json";
+$notesFile = "data/notes.json";
+$archiveFile = "data/archive.json";
 
 function readJson($file) {
     if (!file_exists($file)) return [];
