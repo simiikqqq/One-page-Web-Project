@@ -13,9 +13,6 @@
     data_structure.md          – Popis struktury JSON dat a datových modelů
     design_notes.md            – Návrh UI/UX, barvy, layout, wireframy
     one-page_web.md            – Stručný popis projektu
-
-/public                        – Soubory veřejně přístupné pro prohlížeč
-    index.html                 – Hlavní HTML stránka aplikace
-
-README.md                      – Úvodní dokumentace projektu, návod ke spuštění, popis funkcí
+    
+index.html                 – Hlavní HTML stránka aplikace
 STRUCTURE.md                  – Tento dokument popisující strukturu celého projektu
