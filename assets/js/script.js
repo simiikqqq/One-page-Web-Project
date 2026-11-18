@@ -14,8 +14,8 @@ document.querySelectorAll("nav button").forEach(btn => {
 // NAČTENÍ DAT
 
 async function loadData() {
-    notes = await fetch("../api/notes.php?action=getNotes").then(r => r.json());
-    archive = await fetch("../api/notes.php?action=getArchive").then(r => r.json());
+    notes = await fetch("api/notes.php?action=getNotes").then(r => r.json());
+    archive = await fetch("api/notes.php?action=getArchive").then(r => r.json());
     renderAllNotes();
     renderArchive();
 }
@@ -34,7 +34,7 @@ document.getElementById("saveNote").onclick = async () => {
         return;
     }
 
-    await fetch("../api/notes.php?action=save", {
+    await fetch("api/notes.php?action=save", {
         method: "POST",
         body: JSON.stringify({ title, text, category })
     });
@@ -77,12 +77,12 @@ document.querySelectorAll(".category").forEach(btn => {
 // AKCE 
 
 async function deleteNote(index) {
-    await fetch(`../api/notes.php?action=delete&id=${index}`);
+    await fetch(`api/notes.php?action=delete&id=${index}`);
     loadData();
 }
 
 async function archiveNote(index) {
-    await fetch(`../api/notes.php?action=archive&id=${index}`);
+    await fetch(`api/notes.php?action=archive&id=${index}`);
     loadData();
 }
 
